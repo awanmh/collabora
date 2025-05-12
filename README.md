@@ -508,24 +508,15 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ## Catatan Error
 Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
-1. Sejauh ini saya telah membuat full dari Backend, Database, dan Frontend:
-- Untuk error terjadi masih di backend karena program dijalankan menggunakan backend terlebih dahulu
-- Error terjadi bukan di codingan namun ketika program di jalankan ada kendala error yaitu seperti "403 forbidden", 
-  "404 not found" dll
-- kemungkinan coba otak atik bagian backend karena kemungkinan ada kesalahan logika yang menyebabkan terjadi error di 
-  server
-- untuk suta mungkin bisa perbaiki/troubleshooting di bagian file backend
-2. Untuk database mungkin sejauh yang saya buat masih berjalan dengan baik tidak ada kendala apapun
-3. Untuk frontend mungkin sejauh yang saya coba sudah bisa menampilkan layar login dan register namun saya masih belum 
-   melihat lebih jauh ui nya
-4. untuk ai rekomendasi dari saya bisa menggunakan : grok dan deepsek (diutamakan), chatgpt dan gemini(untuk tambahan)
+1. Untuk saat ini permasalahan nya ada di permintaan pada token nya di bagian softwahre postman-nya dengan eror(401) 
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
-1. Setiawan Muhammad :
+1. Setiawan Muhammad_1203230016:
 - Backend dan Database, serta kerangka frontend sementara
 - Dokumentasi GITHUB
-2. NAMA_KALIAN
+2. Andreas Nababan_1203230025 :
+- Beckend 
 3. NAMA_KALIAN
 4. NAMA_KALIAN
 5. NAMA_KALIAN
