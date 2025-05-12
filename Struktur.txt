@@ -1,0 +1,168 @@
+Collabora
+
+tubes-pbo/
+├── backend/          # Spring Boot
+│   ├── src/
+│   ├── pom.xml
+│   └── application.properties
+├── frontend/         # React.js
+│   ├── public/
+│   ├── src/
+│   └── package.json
+└── database/         # SQL Scripts
+    ├── schema.sql
+    └── data.sql
+
+manajemennilai/
+├── backend/                 # Spring Boot Backend
+│   ├── src/main/java/com/manajemennilai/
+│   │   ├── config/         # Konfigurasi Spring Security, dll
+│   │   ├── controller/     # REST API Controllers
+│   │   ├── dto/            # Data Transfer Objects (Request/Response)
+│   │   ├── exception/      # Custom Exception Handling
+│   │   ├── model/          # Entity Classes (OOP)
+│   │   ├── repository/     # JPA Repositories
+│   │   ├── service/        # Business Logic (Services)
+│   │   ├── security/
+│   │   ├── payload/
+│   │   └── Application.java
+│   ├── src/main/resources/
+│   │   ├── application.properties # Konfigurasi DB & Spring
+│   │   └── data.sql        # Data dummy (opsional)
+│   └── pom.xml             # Dependencies Maven
+│
+├── frontend/               # React.js Frontend
+│   ├── public/             # Static assets
+│   └── src/
+│       ├── components/     # Komponen UI
+│       │   ├── Auth/       # Login & Registrasi
+│       │   ├── Dashboard/  # Halaman Utama
+│       │   ├── Project/    # Manajemen Proyek
+│       │   ├── Task/       # Manajemen Tugas
+│       │   ├── Timeline/   # Visualisasi Timeline
+│       │   └── Notification/ # Notifikasi
+│       ├── contexts/
+│       ├── hooks/
+│       ├── services/       # API Calls (Axios)
+│       ├── utils/       # API Calls (Axios)
+│       ├── App.js
+│       ├── index.js
+│       └── package.json
+│
+└── database/               # SQL Schema (MySQL)
+    ├── schema.sql          # DDL untuk tabel
+    └── data.sql            # Data contoh (opsional)
+
+backend file   
+src/main/java/com/manajemennilai/
+├── config/
+│   ├── SecurityConfig.java
+│   ├── JwtAuthFilter.java
+│   ├── JwtAuthConfig.java
+│   ├── OpenAPIConfig.java
+│   └── CorsConfig.java
+├── controller/
+│   ├── AuthController.java
+│   ├── ProjectController.java
+│   ├── TaskController.java
+│   ├── CommentController.java
+│   └── NotificationController.java
+├── dto/
+│   ├── request/
+│   │   ├── AuthRequest.java
+│   │   ├── LoginRequest.java
+│   │   ├── RegisterRequest.java
+│   │   ├── CreateProjectRequest.java
+│   │   ├── CreateTaskRequest.java
+│   │   └── CreateCommentRequest.java
+│   └── response/
+│       ├── AuthResponse.java
+│       ├── ProjectResponse.java
+│       ├── TaskResponse.java
+│       ├── CommentResponse.java
+│       └── NotificationResponse.java
+├── exception/
+│   ├── CustomExceptionHandler.java
+│   ├── errors
+│   │   ├── ResourceNotFoundException.java
+│   │   ├── AuthenticationFailedException.java
+│   │   ├── OperationNotAllowedException.java
+│   │   ├── ValidationException.java
+│   │   └── DatabaseException.java
+│   └── response/
+│       └── ErrorResponse.java
+├── model/
+│   ├── Comment.java
+│   ├── Lecturer.java
+│   ├── Project.java
+│   ├── Student.java
+│   ├── Task.java
+│   ├── User.java
+│   └── Notification.java
+├── repository/
+│   ├── UserRepository.java
+│   ├── ProjectRepository.java
+│   ├── TaskRepository.java
+│   ├── CommentRepository.java
+│   └── NotificationRepository.java
+├──service/
+│   ├── AuthService.java
+│   ├── ProjectService.java
+│   ├── TaskService.java
+│   ├── CommentService.java
+│   └── NotificationService.java
+├── security/
+│   ├── JwtUtils.java
+│   ├── UserDetailsCustom.java
+│   └── UserDetailsServiceImpl.java
+├── payload/
+│   ├── ValidationMessages.java  # Pesan error validasi
+│   ├── CreateTaskRequest.java   # Pesan error validasi
+│   ├── UpdateTaskStatusRequest.java  # Pesan error validasi
+│   └── ApiResponse.java         # Template response generik
+├── Application.java
+
+frontend/
+├── public/
+│   ├── index.html           # File HTML utama untuk aplikasi React
+│   └── favicon.ico          # (Opsional) Ikon aplikasi
+├── src/
+│   ├── components/
+│   │   ├── Auth/
+│   │   │   ├── Login.jsx    # Komponen untuk halaman login
+│   │   │   └── Register.jsx # Komponen untuk halaman registrasi
+│   │   ├── Dashboard/
+│   │   │   ├── ProjectBoard.jsx # Komponen untuk kanban board proyek
+│   │   │   ├── TaskCard.jsx     # Komponen untuk kartu tugas
+│   │   │   └── Timeline.jsx     # Komponen untuk timeline proyek
+│   │   ├── Modals/
+│   │   │   ├── CreateProjectModal.jsx # Modal untuk membuat proyek
+│   │   │   └── CreateTaskModal.jsx    # Modal untuk membuat tugas
+│   │   └── Shared/
+│   │       ├── Navbar.jsx         # Komponen untuk navigasi
+│   │       ├── NotificationToast.jsx # Komponen untuk notifikasi toast
+│   │       └── PrivateRoute.jsx   # Komponen untuk rute terproteksi
+│   ├── contexts/
+│   │   └── AuthContext.jsx        # Konteks untuk autentikasi
+│   ├── hooks/
+│   │   └── useApi.jsx             # Custom hook untuk API calls
+│   ├── services/
+│   │   ├── api.js                 # Konfigurasi Axios untuk API
+│   │   ├── authService.js         # Service untuk autentikasi
+│   │   └── projectService.js      # Service untuk manajemen proyek/tugas
+│   ├── utils/
+│   │   ├── constants.js           # Konstanta aplikasi
+│   │   └── helpers.js             # Fungsi helper
+│   ├── App.jsx                    # Komponen utama dengan routing
+│   ├── index.js                   # Entry point aplikasi
+│   └── index.css                  # File CSS global (termasuk Tailwind)
+├── package.json                   # Konfigurasi dependensi dan skrip
+├── tailwind.config.js             # Konfigurasi Tailwind CSS
+└── README.md                      # (Opsional) Dokumentasi proyek
+
+
+- mengimplementasi semua yg dijabarkan di dokumen ide/proposal tubes
+- teknologi backend harus java, boleh pakai framework (spring, jsf, dsb)
+- teknologi dan platform untuk frontend boleh bebas (web, desktop, atau mobile boleh), DBMS juga bebas (relasional atau nonrelasional/nosql boleh) )
+
+
