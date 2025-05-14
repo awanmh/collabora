@@ -5,8 +5,8 @@ ini adalah bagian dalam report dan update dari codingan sebelumnya(catatan error
 2. [Kontribusi](#kontribusi)
 
 ## Catatan Error
-Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
-###Pengerjaan Pertama (Creating) 
+Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
+### Pengerjaan Pertama (Creating) 
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
 1. Sejauh ini saya telah membuat full dari Backend, Database, dan Frontend:
 - Untuk error terjadi masih di backend karena program dijalankan menggunakan backend terlebih dahulu
@@ -24,9 +24,9 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
                     Andreas Nababan (1203230025),
                     I Made Suta Eka Dharma (1203230072) 
 1. Dalam pengerjaan ketiga error "401 Unauthorized" di backend sudah teratasi namun ada masalah baru yaitu error "500 internal server error" yang menyebabkan token tidak dapat dibaca oleh server dalam login dan register
-> Pengerjaan Keempat
-Dikerjakan oleh : Setiawan Muhammad (1203230016)
-1. Dalam pengerjaan keempat error "500 internal server error" sudah diatasi dan sudah mengoutputkan 200 ok dalam login dan register.
+### Pengerjaan Keempat
+> Dikerjakan oleh : Setiawan Muhammad (1203230016)
+1. Dalam pengerjaan keempat error "500 internal server error" sudah diatasi dan sudah mengoutputkan "200 ok" di uji coba server dalam login dan register.
 2.  Belum dicek/dites 4 program inti selanjutnya yaitu : Membuat proyek , Membuat Tugas, Komentar, Notifikasi.
 
 ## Kontribusi
