@@ -2,14 +2,13 @@
 
 package com.manajemennilai.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-/**
- * Entitas untuk dosen, mewarisi User.
- */
 @Entity
+@Table(name = "lecturer")
 public class Lecturer extends User {
 
+    @Column(name = "lecturer_id", unique = true, nullable = false)
     private String lecturerId;
 
     // Getters and setters

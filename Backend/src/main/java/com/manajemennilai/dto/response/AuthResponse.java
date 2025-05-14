@@ -2,19 +2,13 @@
 
 package com.manajemennilai.dto.response;
 
-/**
- * DTO untuk respons autentikasi (mengembalikan token JWT).
- */
 public class AuthResponse {
-
     private String token;
-    private String username;
-    private String role;
+    private String message;
 
-    public AuthResponse(String token, String username, String role) {
+    public AuthResponse(String token, String message) {
         this.token = token;
-        this.username = username;
-        this.role = role;
+        this.message = message;
     }
 
     // Getters and setters
@@ -26,19 +20,11 @@ public class AuthResponse {
         this.token = token;
     }
 
-    public String getUsername() {
-        return username;
+    public String getMessage() {
+        return message;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

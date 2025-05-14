@@ -12,7 +12,7 @@
     import org.springframework.security.config.http.SessionCreationPolicy;
     import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
     import org.springframework.security.crypto.password.PasswordEncoder;
-    import org.springframework.security.config.Customizer; // ✅ Tambahkan baris ini
+    import org.springframework.security.config.Customizer;
     import org.springframework.security.web.SecurityFilterChain;
     import org.springframework.security.web.authentication.HttpStatusEntryPoint;
     import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -24,9 +24,9 @@
         @Autowired
         private JwtAuthFilter jwtAuthFilter;
 
-        private final CustomAccsesDeniedHandler accsesDeniedHandler;
+        private final CustomAccessDeniedHandler accsesDeniedHandler;
 
-        public SecurityConfig(CustomAccsesDeniedHandler accsesDeniedHandler) {
+        public SecurityConfig(CustomAccessDeniedHandler accsesDeniedHandler) {
             this.accsesDeniedHandler = accsesDeniedHandler;
         }
 
@@ -41,7 +41,7 @@
                             .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                     )
-                    .exceptionHandling(e->e.accessDeniedHandler(    accsesDeniedHandler)
+                    .exceptionHandling(e -> e.accessDeniedHandler(accsesDeniedHandler)
                             .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
