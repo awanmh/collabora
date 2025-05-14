@@ -15,19 +15,19 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 2. Untuk database mungkin sejauh yang saya buat masih berjalan dengan baik tidak ada kendala apapun
 3. Untuk frontend mungkin sejauh yang saya coba sudah bisa menampilkan layar login dan register namun saya masih belum 
    melihat lebih jauh ui nya
-4. untuk ai rekomendasi dari saya bisa menggunakan : grok dan deepsek (diutamakan), chatgpt dan gemini(untuk tambahan)
+4. untuk ai rekomendasi dari saya bisa menggunakan : grok dan deepsek (diutamakan), chatgpt dan gemini(untuk tambahan).
 ### Pengerjaan Kedua
 > Dikerjakan oleh : Andreas Nababan (1203230025)
-1. Untuk saat ini permasalahan nya ada di permintaan pada token nya di bagian software postman-nya dengan error "401 Unauthorized" dalam login dan register
+1. Untuk saat ini permasalahan nya ada di permintaan pada token nya di bagian software postman-nya dengan error "401 Unauthorized" dalam login dan register. (Backend)
 ### Pengerjaan Ketiga
 > Dikerjakan oleh : Setiawan Muhammad (1203230016),
                     Andreas Nababan (1203230025),
                     I Made Suta Eka Dharma (1203230072) 
-1. Dalam pengerjaan ketiga error "401 Unauthorized" di backend sudah teratasi namun ada masalah baru yaitu error "500 internal server error" yang menyebabkan token tidak dapat dibaca oleh server dalam login dan register
+1. Dalam pengerjaan ketiga error "401 Unauthorized" di backend sudah teratasi namun ada masalah baru yaitu error "500 internal server error" yang menyebabkan token tidak dapat dibaca oleh server dalam login dan register. (Backend)
 ### Pengerjaan Keempat
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
 1. Dalam pengerjaan keempat error "500 internal server error" sudah diatasi dan sudah mengoutputkan "200 ok" di uji coba server dalam login dan register.
-2.  Belum dicek/dites 4 program inti selanjutnya yaitu : Membuat proyek , Membuat Tugas, Komentar, Notifikasi.
+2.  Belum dicek/dites 4 program inti selanjutnya yaitu : Membuat proyek , Membuat Tugas, Komentar, Notifikasi. (Backend)
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
