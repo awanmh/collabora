@@ -6,8 +6,8 @@ ini adalah bagian dalam report dan update dari codingan sebelumnya(catatan error
 
 ## Catatan Error
 Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
-> Pengerjaan Pertama (Creating)
-Dikerjakan oleh : Setiawan Muhammad (1203230016)
+###Pengerjaan Pertama (Creating) 
+> Dikerjakan oleh : Setiawan Muhammad (1203230016)
 1. Sejauh ini saya telah membuat full dari Backend, Database, dan Frontend:
 - Untuk error terjadi masih di backend karena program dijalankan menggunakan backend terlebih dahulu
 - Error terjadi bukan di codingan namun ketika program di jalankan ada kendala error yaitu seperti "403 forbidden"
@@ -16,11 +16,13 @@ Dikerjakan oleh : Setiawan Muhammad (1203230016)
 3. Untuk frontend mungkin sejauh yang saya coba sudah bisa menampilkan layar login dan register namun saya masih belum 
    melihat lebih jauh ui nya
 4. untuk ai rekomendasi dari saya bisa menggunakan : grok dan deepsek (diutamakan), chatgpt dan gemini(untuk tambahan)
-> Pengerjaan Kedua
-Dikerjakan oleh : Andreas Nababan (1203230025)
+### Pengerjaan Kedua
+> Dikerjakan oleh : Andreas Nababan (1203230025)
 1. Untuk saat ini permasalahan nya ada di permintaan pada token nya di bagian software postman-nya dengan error "401 Unauthorized" dalam login dan register
-> Pengerjaan Ketiga
-Dikerjakan oleh : Setiawan Muhammad (1203230016), Andreas Nababan (1203230025), I Made Suta Eka Dharma (1203230072) 
+### Pengerjaan Ketiga
+> Dikerjakan oleh : Setiawan Muhammad (1203230016),
+                    Andreas Nababan (1203230025),
+                    I Made Suta Eka Dharma (1203230072) 
 1. Dalam pengerjaan ketiga error "401 Unauthorized" di backend sudah teratasi namun ada masalah baru yaitu error "500 internal server error" yang menyebabkan token tidak dapat dibaca oleh server dalam login dan register
 > Pengerjaan Keempat
 Dikerjakan oleh : Setiawan Muhammad (1203230016)
