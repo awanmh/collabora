@@ -28,6 +28,10 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
 1. Dalam pengerjaan keempat error "500 internal server error" sudah diatasi dan sudah mengoutputkan "200 ok" di uji coba server dalam login dan register.
 2.  Belum dicek/dites 4 program inti selanjutnya yaitu : Membuat proyek , Membuat Tugas, Komentar, Notifikasi. (Backend)
+### Pengerjaan Kelima
+> Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
+1. Dalam pengerjaan kelima sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Proyek.
+2. Belum dicek/dites 3 program inti selanjutnya yaitu : Membuat Tugas, Komentar, Notifikasi. (Backend)
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
@@ -36,7 +40,7 @@ Kontribusi KELOMPOK manajemen nilai (collabora):
 - Dokumentasi GITHUB
 2. Andreas Nababan_1203230025 :
 - Backend (Pengerjaan kedua)
-3. NAMA_KALIAN
+3. Muhammad Fajri Dwi Prasetya Subandi_1203230076
+  - Backend (Pengerjaan Kelima)
 4. NAMA_KALIAN
 5. NAMA_KALIAN
-
