@@ -2,6 +2,7 @@
 
 package com.manajemennilai.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ public class CreateTaskRequest {
     private String description;
 
     @NotNull(message = "Deadline is required")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") // Format ISO-8601
     private LocalDateTime deadline;
 
     @NotNull(message = "Project ID is required")
