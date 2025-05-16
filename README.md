@@ -36,6 +36,10 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 > Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
 1. Dalam pengerjaan keenam sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Tugas.
 2. Belum dicek/dites 2 program inti selanjutnya yaitu : Komentar, Notifikasi. (Backend)
+### Pengerjaan Ketujuh
+> Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
+1. Dalam pengerjaan ketujuh saya tidak menemukan error sama sekali, dan sudah mendapatkan output "200 OK" di uji coba server dalam Menambahkan Komentar.
+2. Belum dicek/dites 1 program inti selanjutnya yaitu : Notifikasi. (Backend)
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
@@ -47,5 +51,6 @@ Kontribusi KELOMPOK manajemen nilai (collabora):
 3. Muhammad Fajri Dwi Prasetya Subandi_1203230076
   - Backend (Pengerjaan Kelima)
   - Backend (Pengerjaan Keenam)
+  - Backend (Pengerjaan Ketujuh)
 4. NAMA_KALIAN
 5. NAMA_KALIAN
