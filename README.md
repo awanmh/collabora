@@ -30,19 +30,8 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 2.  Belum dicek/dites 4 program inti selanjutnya yaitu : Membuat proyek , Membuat Tugas, Komentar, Notifikasi. (Backend)
 ### Pengerjaan Kelima
 > Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
-1. Dalam pengerjaan kelima sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Proyek.
-2. Belum dicek/dites 3 program inti selanjutnya yaitu : Membuat Tugas, Komentar, Notifikasi. (Backend)
-### Pengerjaan Keenam
-> Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
-1. Dalam pengerjaan keenam sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Tugas.
-2. Belum dicek/dites 2 program inti selanjutnya yaitu : Komentar, Notifikasi. (Backend)
-### Pengerjaan Ketujuh
-> Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
-1. Dalam pengerjaan ketujuh saya tidak menemukan error sama sekali, dan sudah mendapatkan output "200 OK" di uji coba server dalam Menambahkan Komentar.
-2. Belum dicek/dites 1 program inti selanjutnya yaitu : Notifikasi. (Backend)
-### Pengerjaan Kedelapan
-> Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
-1. Dalam pengerjaan kedelapan saya tidak menemukan error sama sekali, dan sudah mendapatkan output "200 OK" di uji coba server dalam Menambahkan Komentar.
+1. Dalam pengerjaan kelima sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Proyek, Tasks, komentar, Notifikasi dan artinya backend berhasil berjalan dengan baik.
+2. Masih ada sedikit error di bagian Proyek denga outputan "An unexpected error occurred: Cannot invoke \"java.util.List.stream()\" because the return value of \"com.manajemennilai.dto.request.CreateProjectRequest.getMemberIds()\" is null" dan error di bagian tasks dimana dia masih belum bisa mencari id yang sudah tersimpan di database, serta ada bug di bagian comment dan notifications
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
@@ -53,6 +42,5 @@ Kontribusi KELOMPOK manajemen nilai (collabora):
 - Backend (Pengerjaan kedua)
 3. Muhammad Fajri Dwi Prasetya Subandi_1203230076
   - Backend (Pengerjaan Kelima)
-  - Backend (Pengerjaan Keenam)
 4. NAMA_KALIAN
 5. NAMA_KALIAN
