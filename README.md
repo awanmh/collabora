@@ -549,6 +549,5 @@ Anggota KELOMPOK manajemen nilai (collabora):
 1. Setiawan Muhammad (1203230016)
 2. Andreas Nababan (1203230025)
 3. I Made Suta Eka Dharma (1203230072)
-4. NAMA_KALIAN
+4. Muhammad Fajri Dwi Prasetya Subandi (1203230076)
 5. NAMA_KALIAN
-
