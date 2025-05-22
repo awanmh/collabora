@@ -60,6 +60,7 @@ src/main/java/com/manajemennilai/
 │   ├── JwtAuthFilter.java
 │   ├── JwtAuthConfig.java
 │   ├── OpenAPIConfig.java
+│   ├── CustomAccesDeniedHandler.java
 │   └── CorsConfig.java
 ├── controller/
 │   ├── AuthController.java
