@@ -32,6 +32,10 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 > Dikerjakan oleh : Muhammad Fajri Dwi Prasetya Subandi (1203230076)
 1. Dalam pengerjaan kelima sudah mendapatkan output "200 OK" di uji coba server dalam Membuat Proyek, Tasks, komentar, Notifikasi dan artinya backend berhasil berjalan dengan baik.
 2. Masih ada sedikit error di bagian Proyek denga outputan "An unexpected error occurred: Cannot invoke \"java.util.List.stream()\" because the return value of \"com.manajemennilai.dto.request.CreateProjectRequest.getMemberIds()\" is null" dan error di bagian tasks dimana dia masih belum bisa mencari id yang sudah tersimpan di database, serta ada bug di bagian comment dan notifications
+### Pengerjaan Keenam
+> Dikerjakan oleh : Setiawan Muhammad (1203230016)
+1. Dalam pengerjaan kelima sudah bisa menjalan frontend sampai halaman dashboard yang artinya frontend sudah terhubung dengan backend dan database.
+2. Masih belum diuji coba lebih lanjut untuk frontendnya karena di bagian backend juga ada error saat menjalankan server proyek, tugas, dan komentar
 
 ## Kontribusi
 Kontribusi KELOMPOK manajemen nilai (collabora):
