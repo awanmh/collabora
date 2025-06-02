@@ -11,13 +11,16 @@ import java.util.List;
  * Entitas untuk proyek.
  */
 @Entity
+@Table(name = "project") // Eksplisit tentukan nama tabel
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false) // Sesuaikan dengan schema.sql
     private String title;
+
     private String description;
 
     @OneToMany(mappedBy = "project")
@@ -25,9 +28,9 @@ public class Project {
 
     @ManyToMany
     @JoinTable(
-        name = "project_members",
-        joinColumns = @JoinColumn(name = "project_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
+            name = "project_members",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> members = new ArrayList<>();
 

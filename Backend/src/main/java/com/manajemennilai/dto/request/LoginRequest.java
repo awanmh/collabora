@@ -2,22 +2,17 @@
 
 package com.manajemennilai.dto.request;
 
-<<<<<<< HEAD
-public class LoginRequest {
-    private String username;
-=======
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank; // Ditambahkan
 
 /**
  * DTO untuk request login.
  */
 public class LoginRequest {
 
-    @NotBlank(message = "Username is required")
+    @NotBlank(message = "Username is required") // Ditambahkan
     private String username;
 
-    @NotBlank(message = "Password is required")
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
+    @NotBlank(message = "Password is required") // Ditambahkan
     private String password;
 
     // Getters and setters

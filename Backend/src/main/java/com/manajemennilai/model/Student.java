@@ -2,32 +2,48 @@
 
 package com.manajemennilai.model;
 
-<<<<<<< HEAD
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "student")
-public class Student extends User {
-
-    @Column(name = "student_id", unique = true, nullable = false)
-=======
-import jakarta.persistence.Entity;
-
 /**
- * Entitas untuk mahasiswa, mewarisi User.
+ * Entitas untuk mahasiswa.
  */
 @Entity
-public class Student extends User {
+@Table(name = "student")
+public class Student {
 
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
+    @Id
+    private Long id;
+
+    @Column(name = "student_id", unique = true, nullable = false)
     private String studentId;
 
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
+
     // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getStudentId() {
         return studentId;
     }
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

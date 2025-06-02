@@ -5,10 +5,6 @@ USE collabora;
 -- Tabel untuk pengguna (abstrak, untuk mahasiswa dan dosen)
 CREATE TABLE IF NOT EXISTS user (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-<<<<<<< HEAD
-=======
-    dtype VARCHAR(31) NOT NULL COMMENT 'Tipe entitas (Student atau Lecturer)',
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Username unik untuk login',
     password VARCHAR(255) NOT NULL COMMENT 'Password terenkripsi (bcrypt)',
     role ENUM('STUDENT', 'LECTURER') NOT NULL COMMENT 'Peran pengguna',
@@ -91,24 +87,14 @@ CREATE TABLE IF NOT EXISTS notification (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk notifikasi pengguna';
 
 -- Data pengujian untuk tabel user dan student
-<<<<<<< HEAD
 INSERT IGNORE INTO user (username, password, role)
 VALUES ('admin', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'STUDENT');
-=======
-INSERT IGNORE INTO user (dtype, username, password, role)
-VALUES ('Student', 'admin', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'STUDENT');
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 INSERT IGNORE INTO student (id, student_id)
 VALUES ((SELECT id FROM user WHERE username = 'admin'), 'NIM12345');
 
 -- Data pengujian untuk tabel user dan lecturer
-<<<<<<< HEAD
 INSERT IGNORE INTO user (username, password, role)
 VALUES ('dosen', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'LECTURER');
-=======
-INSERT IGNORE INTO user (dtype, username, password, role)
-VALUES ('Lecturer', 'dosen', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'LECTURER');
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 INSERT IGNORE INTO lecturer (id, lecturer_id)
 VALUES ((SELECT id FROM user WHERE username = 'dosen'), 'DOSEN001');
 

@@ -3,6 +3,7 @@
 package com.manajemennilai.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class CreateProjectRequest {
     private String title;
 
     private String description;
+
+    @NotEmpty(message = "Member IDs are required")
     private List<Long> memberIds;
 
     // Getters and setters

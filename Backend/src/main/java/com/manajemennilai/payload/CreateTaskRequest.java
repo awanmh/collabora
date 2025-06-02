@@ -1,10 +1,6 @@
 // CreateTaskRequest.java
 
-<<<<<<< HEAD
-package com.manajemennilai.payload;
-=======
-package com.manajemennilai.payload.request;
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
+package com.manajemennilai.payload; // Dipilih package ini
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

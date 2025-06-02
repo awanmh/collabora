@@ -11,40 +11,34 @@ Dokumentasi ini menjelaskan cara menginstal, menjalankan, dan menguji aplikasi, 
 4. [Struktur Proyek](#struktur-proyek)
 5. [Menjalankan Aplikasi](#menjalankan-aplikasi)
 6. [Pengujian dengan Postman](#pengujian-dengan-postman)
-<<<<<<< HEAD
 7. [Catatan Error](#Catatan-Error)
 8. [Kontribusi](#kontribusi)
-=======
-7. [Cara update codingan](#cara-update-codingan)
-8. [Catatan Error](#Catatan-Error)
-9. [Kelompok](#kelompok)
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 
 
 ## Fitur Aplikasi
 Berdasarkan ide/proposal tugas besar, Collabora menyediakan fitur berikut:
 - **Autentikasi dan Otorisasi**:
-  - Login dan registrasi untuk mahasiswa dan dosen.
-  - Autentikasi berbasis JWT (JSON Web Token).
-  - Role-based access control (STUDENT, LECTURER).
+    - Login dan registrasi untuk mahasiswa dan dosen.
+    - Autentikasi berbasis JWT (JSON Web Token).
+    - Role-based access control (STUDENT, LECTURER).
 - **Manajemen Proyek**:
-  - Membuat, mengedit, dan menghapus proyek.
-  - Menambahkan anggota proyek (mahasiswa/dosen).
+    - Membuat, mengedit, dan menghapus proyek.
+    - Menambahkan anggota proyek (mahasiswa/dosen).
 - **Manajemen Tugas**:
-  - Membuat, mengedit, dan menghapus tugas dalam proyek.
-  - Menetapkan tugas ke anggota proyek.
-  - Melacak status tugas (NOT_STARTED, IN_PROGRESS, COMPLETED) dan milestone.
+    - Membuat, mengedit, dan menghapus tugas dalam proyek.
+    - Menetapkan tugas ke anggota proyek.
+    - Melacak status tugas (NOT_STARTED, IN_PROGRESS, COMPLETED) dan milestone.
 - **Komentar**:
-  - Menambahkan komentar pada tugas untuk diskusi.
-  - Mendukung komentar bersarang (replies).
+    - Menambahkan komentar pada tugas untuk diskusi.
+    - Mendukung komentar bersarang (replies).
 - **Notifikasi**:
-  - Notifikasi real-time untuk tugas baru, pembaruan status, atau komentar.
+    - Notifikasi real-time untuk tugas baru, pembaruan status, atau komentar.
 - **Visualisasi Timeline**:
-  - Menampilkan timeline proyek dengan milestone dan tenggat waktu tugas.
+    - Menampilkan timeline proyek dengan milestone dan tenggat waktu tugas.
 - **Antarmuka Pengguna**:
-  - Dashboard interaktif dengan kanban board untuk tugas.
-  - Modal untuk membuat proyek/tugas.
-  - Notifikasi toast untuk pembaruan.
+    - Dashboard interaktif dengan kanban board untuk tugas.
+    - Modal untuk membuat proyek/tugas.
+    - Notifikasi toast untuk pembaruan.
 
 ## Prasyarat
 Untuk menjalankan Collabora, Anda memerlukan perangkat lunak berikut:
@@ -57,10 +51,6 @@ Untuk menjalankan Collabora, Anda memerlukan perangkat lunak berikut:
 
 ### Frontend
 - **Node.js**: Versi 16 atau lebih tinggi (termasuk npm).
-<<<<<<< HEAD
-=======
-- **React.js**: Versi 18 atau lebih tinggi
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 - **Text Editor**: Visual Studio Code (disarankan).
 
 ### Pengujian
@@ -75,12 +65,12 @@ Ikuti langkah-langkah berikut untuk menginstal dependensi dan menyiapkan lingkun
 ### 1. Instalasi JDK
 1. Unduh JDK 17 dari [Oracle](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html) atau [OpenJDK](https://adoptium.net/).
 2. Instal JDK dan atur variabel lingkungan `JAVA_HOME`:
-   - Windows: Tambahkan `JAVA_HOME` ke System Environment Variables (contoh: `C:\Program Files\Java\jdk-17`).
-   - Linux/macOS: Tambahkan ke `~/.bashrc` atau `~/.zshrc`:
-     ```bash
-     export JAVA_HOME=/path/to/jdk-17
-     export PATH=$JAVA_HOME/bin:$PATH
-     ```
+    - Windows: Tambahkan `JAVA_HOME` ke System Environment Variables (contoh: `C:\Program Files\Java\jdk-17`).
+    - Linux/macOS: Tambahkan ke `~/.bashrc` atau `~/.zshrc`:
+      ```bash
+      export JAVA_HOME=/path/to/jdk-17
+      export PATH=$JAVA_HOME/bin:$PATH
+      ```
 3. Verifikasi instalasi:
    ```bash
    java -version
@@ -91,11 +81,11 @@ Ikuti langkah-langkah berikut untuk menginstal dependensi dan menyiapkan lingkun
 1. Unduh Maven dari [Apache Maven](https://maven.apache.org/download.cgi).
 2. Ekstrak ke direktori (contoh: `C:\maven`).
 3. Tambahkan Maven ke `PATH`:
-   - Windows: Tambahkan `C:\maven\bin` ke System Environment Variables.
-   - Linux/macOS: Tambahkan ke `~/.bashrc` atau `~/.zshrc`:
-     ```bash
-     export PATH=/path/to/maven/bin:$PATH
-     ```
+    - Windows: Tambahkan `C:\maven\bin` ke System Environment Variables.
+    - Linux/macOS: Tambahkan ke `~/.bashrc` atau `~/.zshrc`:
+      ```bash
+      export PATH=/path/to/maven/bin:$PATH
+      ```
 4. Verifikasi instalasi:
    ```bash
    mvn -version
@@ -105,11 +95,11 @@ Ikuti langkah-langkah berikut untuk menginstal dependensi dan menyiapkan lingkun
 ### 3. Instalasi MySQL
 1. Unduh MySQL Community Server dari [MySQL](https://dev.mysql.com/downloads/mysql/).
 2. Instal MySQL dan konfigurasikan:
-   - Buat pengguna root tanpa kata sandi (atau atur kata sandi dan perbarui di `application.properties`).
-   - Pastikan MySQL berjalan:
-     ```bash
-     mysqladmin -u root -p status
-     ```
+    - Buat pengguna root tanpa kata sandi (atau atur kata sandi dan perbarui di `application.properties`).
+    - Pastikan MySQL berjalan:
+      ```bash
+      mysqladmin -u root -p status
+      ```
 3. Buat database `collabora`:
    ```bash
    mysql -u root -p
@@ -263,29 +253,29 @@ tubes-pbo/
 
 ### Penjelasan Komponen
 - **Backend**:
-  - **config/**: Berisi konfigurasi seperti Spring Security (`SecurityConfig.java`, `JwtAuthFilter.java`) dan CORS.
-  - **controller/**: Menangani permintaan HTTP (REST API) untuk autentikasi, proyek, tugas, komentar, dan notifikasi.
-  - **dto/**: Objek untuk request dan response API, seperti `AuthRequest.java` dan `AuthResponse.java`.
-  - **exception/**: Penanganan error kustom untuk respons yang konsisten.
-  - **model/**: Entitas JPA yang memetakan tabel database (`User`, `Project`, `Task`, dll.).
-  - **repository/**: Antarmuka JPA untuk operasi database.
-  - **service/**: Logika bisnis untuk autentikasi, manajemen proyek, dll.
-  - **security/**: Komponen keamanan seperti `JwtUtils.java` untuk pengelolaan token JWT.
-  - **payload/**: Objek tambahan untuk validasi dan respons API.
-  - **resources/**: Berisi `application.properties` untuk konfigurasi dan `schema.sql` untuk skema database.
+    - **config/**: Berisi konfigurasi seperti Spring Security (`SecurityConfig.java`, `JwtAuthFilter.java`) dan CORS.
+    - **controller/**: Menangani permintaan HTTP (REST API) untuk autentikasi, proyek, tugas, komentar, dan notifikasi.
+    - **dto/**: Objek untuk request dan response API, seperti `AuthRequest.java` dan `AuthResponse.java`.
+    - **exception/**: Penanganan error kustom untuk respons yang konsisten.
+    - **model/**: Entitas JPA yang memetakan tabel database (`User`, `Project`, `Task`, dll.).
+    - **repository/**: Antarmuka JPA untuk operasi database.
+    - **service/**: Logika bisnis untuk autentikasi, manajemen proyek, dll.
+    - **security/**: Komponen keamanan seperti `JwtUtils.java` untuk pengelolaan token JWT.
+    - **payload/**: Objek tambahan untuk validasi dan respons API.
+    - **resources/**: Berisi `application.properties` untuk konfigurasi dan `schema.sql` untuk skema database.
 
 - **Frontend**:
-  - **components/**: Komponen UI React, termasuk halaman login, dashboard, dan modal.
-  - **contexts/**: Konteks untuk mengelola state autentikasi.
-  - **hooks/**: Custom hook untuk memanggil API.
-  - **services/**: Konfigurasi Axios untuk komunikasi dengan backend.
-  - **utils/**: Konstanta dan fungsi pembantu.
-  - **App.jsx**: Mengatur routing dan layout utama.
-  - **index.js**: Entry point aplikasi React.
+    - **components/**: Komponen UI React, termasuk halaman login, dashboard, dan modal.
+    - **contexts/**: Konteks untuk mengelola state autentikasi.
+    - **hooks/**: Custom hook untuk memanggil API.
+    - **services/**: Konfigurasi Axios untuk komunikasi dengan backend.
+    - **utils/**: Konstanta dan fungsi pembantu.
+    - **App.jsx**: Mengatur routing dan layout utama.
+    - **index.js**: Entry point aplikasi React.
 
 - **Database**:
-  - **schema.sql**: Berisi perintah DDL untuk membuat tabel seperti `user`, `project`, `task`, dll.
-  - **data.sql**: (Opsional) Berisi data pengujian untuk mengisi tabel.
+    - **schema.sql**: Berisi perintah DDL untuk membuat tabel seperti `user`, `project`, `task`, dll.
+    - **data.sql**: (Opsional) Berisi data pengujian untuk mengisi tabel.
 
 ## Menjalankan Aplikasi
 
@@ -325,12 +315,12 @@ tubes-pbo/
    ```
    Atau jalankan dari IntelliJ IDEA dengan mengklik **Run** pada `Application.java`.
 4. Verifikasi bahwa backend berjalan:
-   - Buka `http://localhost:8081/api/swagger-ui.html` untuk melihat dokumentasi API.
-   - Log akan menampilkan:
-     ```
-     INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http)
-     INFO  com.manajemennilai.Application           : Started Application in X.XXX seconds
-     ```
+    - Buka `http://localhost:8081/api/swagger-ui.html` untuk melihat dokumentasi API.
+    - Log akan menampilkan:
+      ```
+      INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http)
+      INFO  com.manajemennilai.Application           : Started Application in X.XXX seconds
+      ```
 
 ### 3. Menjalankan Frontend
 1. Masuk ke direktori frontend:
@@ -347,18 +337,18 @@ tubes-pbo/
    ```
 4. Buka `http://localhost:3000` di browser untuk mengakses aplikasi.
 5. Verifikasi bahwa frontend terhubung ke backend:
-   - Coba login dengan kredensial dari `schema.sql` (misalnya, `username: admin`, `password: password`).
+    - Coba login dengan kredensial dari `schema.sql` (misalnya, `username: admin`, `password: password`).
 
 ### 4. Konfigurasi Tambahan
 - **application.properties** (`backend/src/main/resources/application.properties`):
-  - Sesuaikan konfigurasi database jika menggunakan kata sandi MySQL:
-    ```properties
-    spring.datasource.password=your_mysql_password
-    ```
-  - Pastikan `jwt.secret` aman untuk produksi:
-    ```properties
-    jwt.secret=your_secure_secret_key
-    ```
+    - Sesuaikan konfigurasi database jika menggunakan kata sandi MySQL:
+      ```properties
+      spring.datasource.password=your_mysql_password
+      ```
+    - Pastikan `jwt.secret` aman untuk produksi:
+      ```properties
+      jwt.secret=your_secure_secret_key
+      ```
 - **CORS**: Backend sudah dikonfigurasi untuk mengizinkan permintaan dari `http://localhost:3000`.
 
 ## Pengujian dengan Postman
@@ -366,7 +356,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ### 1. Login
 - **Method**: POST
-- **URL**: `http://localhost:8081/api/auth/login`
+- **URL**: `http://localhost:8081/api/api/auth/login`
 - **Headers**:
   ```
   Content-Type: application/json
@@ -374,15 +364,15 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 - **Body** (raw, JSON):
   ```json
   {
-    "username": "admin",
-    "password": "password"
+  "username": "andreas",
+  "password": "password123"
   }
   ```
 - **Respons yang Diharapkan** (200 OK):
   ```json
   {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "username": "admin",
+    "username": "andreas",
     "role": "STUDENT"
   }
   ```
@@ -390,7 +380,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ### 2. Registrasi
 - **Method**: POST
-- **URL**: `http://localhost:8081/api/auth/register`
+- **URL**: `http://localhost:8081/api/api/auth/register`
 - **Headers**:
   ```
   Content-Type: application/json
@@ -415,7 +405,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ### 3. Membuat Proyek
 - **Method**: POST
-- **URL**: `http://localhost:8081/api/projects`
+- **URL**: `http://localhost:8081/api/api/projects`
 - **Headers**:
   ```
   Content-Type: application/json
@@ -424,22 +414,27 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 - **Body** (raw, JSON):
   ```json
   {
-    "title": "Proyek Baru",
-    "description": "Deskripsi proyek baru"
+  "title": "Proyek Baru",
+  "description": "Deskripsi proyek baru",
+  "memberIds": [1, 2]
   }
   ```
 - **Respons yang Diharapkan** (200 OK):
   ```json
   {
-    "id": 2,
+    "id": 10,
     "title": "Proyek Baru",
-    "description": "Deskripsi proyek baru"
+    "description": "Deskripsi proyek baru",
+    "memberIds": [
+        1,
+        2
+    ]
   }
   ```
 
 ### 4. Membuat Tugas
 - **Method**: POST
-- **URL**: `http://localhost:8081/api/tasks`
+- **URL**: `http://localhost:8081/api/api/tasks`
 - **Headers**:
   ```
   Content-Type: application/json
@@ -467,7 +462,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ### 5. Menambahkan Komentar
 - **Method**: POST
-- **URL**: `http://localhost:8081/api/comments`
+- **URL**: `http://localhost:8081/api/api/comments`
 - **Headers**:
   ```
   Content-Type: application/json
@@ -492,7 +487,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 
 ### 6. Mendapatkan Notifikasi
 - **Method**: GET
-- **URL**: `http://localhost:8081/api/notifications`
+- **URL**: `http://localhost:8081/api/api/notifications`
 - **Headers**:
   ```
   Authorization: Bearer <token>
@@ -511,22 +506,21 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
 ### Catatan Pengujian
 - Gunakan token JWT dari respons login untuk permintaan yang memerlukan autentikasi.
 - Jika mendapatkan HTTP 403 Forbidden, periksa:
-  - Apakah token valid (belum kedaluwarsa).
-  - Apakah URL menggunakan prefiks `/api` (misalnya, `/api/auth/login`).
+    - Apakah token valid (belum kedaluwarsa).
+    - Apakah URL menggunakan prefiks `/api` (misalnya, `/api/auth/login`).
 - Jika mendapatkan HTTP 500, periksa log backend untuk stack trace.
 
-<<<<<<< HEAD
 
 ## Catatan Error
 Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
-### Pengerjaan Pertama (Creating) 
+### Pengerjaan Pertama (Creating)
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
 1. Sejauh ini saya telah membuat full dari Backend, Database, dan Frontend:
 - Untuk error terjadi masih di backend karena program dijalankan menggunakan backend terlebih dahulu
 - Error terjadi bukan di codingan namun ketika program di jalankan ada kendala error yaitu seperti "403 forbidden"
 - kemungkinan coba otak atik bagian backend karena kemungkinan ada kesalahan logika yang menyebabkan terjadi error di server
 2. Untuk database mungkin sejauh yang saya buat masih berjalan dengan baik tidak ada kendala apapun
-3. Untuk frontend mungkin sejauh yang saya coba sudah bisa menampilkan layar login dan register namun saya masih belum 
+3. Untuk frontend mungkin sejauh yang saya coba sudah bisa menampilkan layar login dan register namun saya masih belum
    melihat lebih jauh ui nya
 4. untuk ai rekomendasi dari saya bisa menggunakan : grok dan deepsek (diutamakan), chatgpt dan gemini(untuk tambahan).
 ### Pengerjaan Kedua
@@ -534,8 +528,8 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 1. Untuk saat ini permasalahan nya ada di permintaan pada token nya di bagian software postman-nya dengan error "401 Unauthorized" dalam login dan register. (Backend)
 ### Pengerjaan Ketiga
 > Dikerjakan oleh : Setiawan Muhammad (1203230016),
-                    Andreas Nababan (1203230025),
-                    I Made Suta Eka Dharma (1203230072) 
+Andreas Nababan (1203230025),
+I Made Suta Eka Dharma (1203230072)
 1. Dalam pengerjaan ketiga error "401 Unauthorized" di backend sudah teratasi namun ada masalah baru yaitu error "500 internal server error" yang menyebabkan token tidak dapat dibaca oleh server dalam login dan register. (Backend)
 ### Pengerjaan Keempat
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
@@ -547,7 +541,7 @@ Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 2. Belum dicek/dites 3 program inti selanjutnya yaitu : Membuat Tugas, Komentar, Notifikasi. (Backend)
 ### Pengerjaan Keenam
 > Dikerjakan oleh : Setiawan Muhammad (1203230076)
-1. Dalam pengerjaan keenam sudah bisa menjalankan frontend sampai dashboard setelah login yang artinya frontend sudah terhubung dengan backend dan database. 
+1. Dalam pengerjaan keenam sudah bisa menjalankan frontend sampai dashboard setelah login yang artinya frontend sudah terhubung dengan backend dan database.
 2. Belum dicek di fitur lainnya karena masih ada error dan bug di bagian proyek, tugas, komentar.
 
 ## Kontribusi
@@ -558,53 +552,7 @@ Kontribusi KELOMPOK manajemen nilai (collabora):
 2. Andreas Nababan_1203230025 :
 - Backend (Pengerjaan kedua)
 3. Muhammad Fajri Dwi Prasetya Subandi_1203230076
-  - Backend (Pengerjaan Kelima)
+- Backend (Pengerjaan Kelima)
 4. NAMA_KALIAN
 5. NAMA_KALIAN
 
-=======
-## Cara update codingan
-### 1. Fork Repository
-Pertama-tama, fork repository ini ke akun GitHub kamu:
-> Klik tombol **Fork** di kanan atas halaman repositori ini.
-
-### 2. Clone Repository Forked ke Lokal
-```bash
-git clone https://github.com/awanmh/collabora.git
-cd collabora
-```
-
-### 3. Lakukan Perubahan dan Commit
-Setelah kamu selesai melakukan perubahan:
-
-```bash
-git init
-```
-```bash
-git add .
-```
-```bash
-git commit -m "Deskripsikan perubahan"
-```
-### 4. Push ke Repository Kamu
-```bash
-git config --global user.name "NAMA"
-git config --global user.email "NAMA@example.com"
-```
-```bash
-git remote add origin https://github.com/awanmh/collabora.git
-git push origin fitur-atau-perbaikan
-```
-
-## Catatan Error
-### Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
-Penjelasan catatan error akan di jelaskan lebih detail pada branch "fitur-atau-perbaikan"
-
-## Kelompok
-Anggota KELOMPOK manajemen nilai (collabora):
-1. Setiawan Muhammad (1203230016)
-2. Andreas Nababan (1203230025)
-3. I Made Suta Eka Dharma (1203230072)
-4. Muhammad Fajri Dwi Prasetya Subandi (1203230076)
-5. NAMA_KALIAN
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e

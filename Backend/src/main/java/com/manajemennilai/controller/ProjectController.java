@@ -4,6 +4,7 @@ package com.manajemennilai.controller;
 import com.manajemennilai.dto.request.CreateProjectRequest;
 import com.manajemennilai.dto.response.ProjectResponse;
 import com.manajemennilai.service.ProjectService;
+import jakarta.validation.Valid; // Ditambahkan
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +23,8 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<ProjectResponse> createProject(@RequestBody CreateProjectRequest request) {
+    @PreAuthorize("hasAnyRole('STUDENT', 'LECTURER')")
+    public ResponseEntity<ProjectResponse> createProject(@Valid @RequestBody CreateProjectRequest request) { // Tambahkan @Valid
         return ResponseEntity.ok(projectService.createProject(request));
     }
 
@@ -37,7 +39,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id, @RequestBody CreateProjectRequest request) {
+    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id, @Valid @RequestBody CreateProjectRequest request) { // Tambahkan @Valid
         return ResponseEntity.ok(projectService.updateProject(id, request));
     }
 

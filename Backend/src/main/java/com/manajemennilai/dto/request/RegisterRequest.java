@@ -2,40 +2,20 @@
 
 package com.manajemennilai.dto.request;
 
-<<<<<<< HEAD
-import jakarta.validation.constraints.NotNull;
-
-public class RegisterRequest {
-    @NotNull(message = "Username is required")
-    private String username;
-
-    @NotNull(message = "Password is required")
-    private String password;
-
-    @NotNull(message = "Role is required")
-    private String role;
-
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-=======
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank; // Digunakan daripada NotNull
 
 /**
  * DTO untuk request registrasi.
  */
 public class RegisterRequest {
 
-    @NotBlank(message = "Username is required")
+    @NotBlank(message = "Username is required") // Lebih baik daripada NotNull
     private String username;
 
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "Password is required") // Lebih baik daripada NotNull
     private String password;
 
-    @NotBlank(message = "Role is required")
+    @NotBlank(message = "Role is required") // Lebih baik daripada NotNull
     private String role; // STUDENT atau LECTURER
 
     private String studentId; // Opsional, hanya untuk mahasiswa
@@ -81,5 +61,4 @@ public class RegisterRequest {
     public void setLecturerId(String lecturerId) {
         this.lecturerId = lecturerId;
     }
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 }

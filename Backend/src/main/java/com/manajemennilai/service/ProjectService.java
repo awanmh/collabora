@@ -12,6 +12,7 @@ import com.manajemennilai.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,10 +33,12 @@ public class ProjectService {
         project.setTitle(request.getTitle());
         project.setDescription(request.getDescription());
 
-        List<User> members = request.getMemberIds().stream()
-                .map(id -> userRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id)))
-                .collect(Collectors.toList());
+        List<User> members = request.getMemberIds() != null ?
+                request.getMemberIds().stream()
+                        .map(id -> userRepository.findById(id)
+                                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id)))
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
         project.setMembers(members);
 
         projectRepository.save(project);
@@ -60,10 +63,12 @@ public class ProjectService {
         project.setTitle(request.getTitle());
         project.setDescription(request.getDescription());
 
-        List<User> members = request.getMemberIds().stream()
-                .map(userId -> userRepository.findById(userId)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId)))
-                .collect(Collectors.toList());
+        List<User> members = request.getMemberIds() != null ?
+                request.getMemberIds().stream()
+                        .map(userId -> userRepository.findById(userId)
+                                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId)))
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
         project.setMembers(members);
 
         projectRepository.save(project);
@@ -79,7 +84,6 @@ public class ProjectService {
     public String evaluateProject(Long id) {
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Project not found with ID: " + id));
-        // Logika evaluasi dosen (contoh sederhana)
         return "Evaluation for project " + project.getTitle() + ": All tasks completed.";
     }
 
