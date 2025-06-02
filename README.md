@@ -11,8 +11,14 @@ Dokumentasi ini menjelaskan cara menginstal, menjalankan, dan menguji aplikasi, 
 4. [Struktur Proyek](#struktur-proyek)
 5. [Menjalankan Aplikasi](#menjalankan-aplikasi)
 6. [Pengujian dengan Postman](#pengujian-dengan-postman)
+<<<<<<< HEAD
 7. [Catatan Error](#Catatan-Error)
 8. [Kontribusi](#kontribusi)
+=======
+7. [Cara update codingan](#cara-update-codingan)
+8. [Catatan Error](#Catatan-Error)
+9. [Kelompok](#kelompok)
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 
 
 ## Fitur Aplikasi
@@ -51,6 +57,10 @@ Untuk menjalankan Collabora, Anda memerlukan perangkat lunak berikut:
 
 ### Frontend
 - **Node.js**: Versi 16 atau lebih tinggi (termasuk npm).
+<<<<<<< HEAD
+=======
+- **React.js**: Versi 18 atau lebih tinggi
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 - **Text Editor**: Visual Studio Code (disarankan).
 
 ### Pengujian
@@ -505,6 +515,7 @@ Gunakan Postman untuk menguji endpoint API backend. Berikut adalah contoh penguj
   - Apakah URL menggunakan prefiks `/api` (misalnya, `/api/auth/login`).
 - Jika mendapatkan HTTP 500, periksa log backend untuk stack trace.
 
+<<<<<<< HEAD
 
 ## Catatan Error
 Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
@@ -551,3 +562,49 @@ Kontribusi KELOMPOK manajemen nilai (collabora):
 4. NAMA_KALIAN
 5. NAMA_KALIAN
 
+=======
+## Cara update codingan
+### 1. Fork Repository
+Pertama-tama, fork repository ini ke akun GitHub kamu:
+> Klik tombol **Fork** di kanan atas halaman repositori ini.
+
+### 2. Clone Repository Forked ke Lokal
+```bash
+git clone https://github.com/awanmh/collabora.git
+cd collabora
+```
+
+### 3. Lakukan Perubahan dan Commit
+Setelah kamu selesai melakukan perubahan:
+
+```bash
+git init
+```
+```bash
+git add .
+```
+```bash
+git commit -m "Deskripsikan perubahan"
+```
+### 4. Push ke Repository Kamu
+```bash
+git config --global user.name "NAMA"
+git config --global user.email "NAMA@example.com"
+```
+```bash
+git remote add origin https://github.com/awanmh/collabora.git
+git push origin fitur-atau-perbaikan
+```
+
+## Catatan Error
+### Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana :
+Penjelasan catatan error akan di jelaskan lebih detail pada branch "fitur-atau-perbaikan"
+
+## Kelompok
+Anggota KELOMPOK manajemen nilai (collabora):
+1. Setiawan Muhammad (1203230016)
+2. Andreas Nababan (1203230025)
+3. I Made Suta Eka Dharma (1203230072)
+4. Muhammad Fajri Dwi Prasetya Subandi (1203230076)
+5. NAMA_KALIAN
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e

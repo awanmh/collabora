@@ -4,7 +4,10 @@
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.context.annotation.Bean;
     import org.springframework.context.annotation.Configuration;
+<<<<<<< HEAD
     import org.springframework.http.HttpStatus;
+=======
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     import org.springframework.security.authentication.AuthenticationManager;
     import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
     import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,9 +15,13 @@
     import org.springframework.security.config.http.SessionCreationPolicy;
     import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
     import org.springframework.security.crypto.password.PasswordEncoder;
+<<<<<<< HEAD
     import org.springframework.security.config.Customizer;
     import org.springframework.security.web.SecurityFilterChain;
     import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+=======
+    import org.springframework.security.web.SecurityFilterChain;
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
     @Configuration
@@ -24,6 +31,7 @@
         @Autowired
         private JwtAuthFilter jwtAuthFilter;
 
+<<<<<<< HEAD
         private final CustomAccessDeniedHandler accsesDeniedHandler;
 
         public SecurityConfig(CustomAccessDeniedHandler accsesDeniedHandler) {
@@ -34,6 +42,11 @@
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
                     .cors(Customizer.withDefaults())
+=======
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
                     .csrf(csrf -> csrf.disable())
                     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(auth -> auth
@@ -41,8 +54,11 @@
                             .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                     )
+<<<<<<< HEAD
                     .exceptionHandling(e -> e.accessDeniedHandler(accsesDeniedHandler)
                             .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+=======
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
             return http.build();

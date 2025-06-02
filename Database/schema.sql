@@ -3,8 +3,14 @@ CREATE DATABASE IF NOT EXISTS collabora;
 USE collabora;
 
 -- Tabel untuk pengguna (abstrak, untuk mahasiswa dan dosen)
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS user (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
+=======
+CREATE TABLE user (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dtype VARCHAR(31) NOT NULL COMMENT 'Tipe entitas (Student atau Lecturer)',
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     username VARCHAR(50) NOT NULL UNIQUE COMMENT 'Username unik untuk login',
     password VARCHAR(255) NOT NULL COMMENT 'Password terenkripsi (bcrypt)',
     role ENUM('STUDENT', 'LECTURER') NOT NULL COMMENT 'Peran pengguna',
@@ -12,28 +18,44 @@ CREATE TABLE IF NOT EXISTS user (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk data pengguna';
 
 -- Tabel untuk mahasiswa (mewarisi user)
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS student (
+=======
+CREATE TABLE student (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY,
     student_id VARCHAR(20) NOT NULL UNIQUE COMMENT 'NIM mahasiswa',
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk data tambahan mahasiswa';
 
 -- Tabel untuk dosen (mewarisi user)
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS lecturer (
+=======
+CREATE TABLE lecturer (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY,
     lecturer_id VARCHAR(20) NOT NULL UNIQUE COMMENT 'Kode dosen',
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk data tambahan dosen';
 
 -- Tabel untuk proyek
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS project (
+=======
+CREATE TABLE project (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL COMMENT 'Judul proyek',
     description TEXT COMMENT 'Deskripsi proyek'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk data proyek';
 
 -- Tabel penghubung untuk anggota proyek (many-to-many)
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS project_members (
+=======
+CREATE TABLE project_members (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     project_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL,
     PRIMARY KEY (project_id, user_id),
@@ -44,7 +66,11 @@ CREATE TABLE IF NOT EXISTS project_members (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel penghubung untuk anggota proyek';
 
 -- Tabel untuk tugas
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS task (
+=======
+CREATE TABLE task (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL COMMENT 'Judul tugas',
     description TEXT COMMENT 'Deskripsi tugas',
@@ -60,7 +86,11 @@ CREATE TABLE IF NOT EXISTS task (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk data tugas';
 
 -- Tabel untuk komentar
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS comment (
+=======
+CREATE TABLE comment (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     content TEXT NOT NULL COMMENT 'Isi komentar',
     task_id BIGINT NOT NULL,
@@ -75,7 +105,11 @@ CREATE TABLE IF NOT EXISTS comment (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk komentar pada tugas';
 
 -- Tabel untuk notifikasi
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS notification (
+=======
+CREATE TABLE notification (
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     message VARCHAR(255) NOT NULL COMMENT 'Pesan notifikasi',
     is_read TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'Status baca notifikasi',
@@ -87,6 +121,7 @@ CREATE TABLE IF NOT EXISTS notification (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabel untuk notifikasi pengguna';
 
 -- Data pengujian untuk tabel user dan student
+<<<<<<< HEAD
 INSERT IGNORE INTO user (username, password, role)
 VALUES ('admin', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'STUDENT');
 INSERT IGNORE INTO student (id, student_id)
@@ -121,5 +156,41 @@ VALUES ('Tolong prioritaskan desain dashboard',
 
 -- Data pengujian untuk tabel notification
 INSERT IGNORE INTO notification (message, is_read, user_id)
+=======
+INSERT INTO user (dtype, username, password, role) 
+VALUES ('Student', 'admin', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'STUDENT');
+INSERT INTO student (id, student_id) 
+VALUES ((SELECT id FROM user WHERE username = 'admin'), 'NIM12345');
+
+-- Data pengujian untuk tabel user dan lecturer
+INSERT INTO user (dtype, username, password, role) 
+VALUES ('Lecturer', 'dosen', '$2a$10$XURPShQ5uMj9V6h4V8aG5eZ/3jB1M3m1eI3jB1M3m1eI3jB1M3m1e', 'LECTURER');
+INSERT INTO lecturer (id, lecturer_id) 
+VALUES ((SELECT id FROM user WHERE username = 'dosen'), 'DOSEN001');
+
+-- Data pengujian untuk tabel project
+INSERT INTO project (title, description) 
+VALUES ('Proyek Capstone', 'Proyek pengembangan aplikasi manajemen tugas');
+
+-- Data pengujian untuk tabel project_members
+INSERT INTO project_members (project_id, user_id) 
+VALUES ((SELECT id FROM project WHERE title = 'Proyek Capstone'), 
+        (SELECT id FROM user WHERE username = 'admin'));
+
+-- Data pengujian untuk tabel task
+INSERT INTO task (title, description, deadline, status, is_milestone, project_id, assigned_to_id) 
+VALUES ('Desain UI', 'Membuat desain antarmuka pengguna', '2025-06-01 23:59:59', 'NOT_STARTED', 0, 
+        (SELECT id FROM project WHERE title = 'Proyek Capstone'), 
+        (SELECT id FROM user WHERE username = 'admin'));
+
+-- Data pengujian untuk tabel comment
+INSERT INTO comment (content, task_id, author_id) 
+VALUES ('Tolong prioritaskan desain dashboard', 
+        (SELECT id FROM task WHERE title = 'Desain UI'), 
+        (SELECT id FROM user WHERE username = 'dosen'));
+
+-- Data pengujian untuk tabel notification
+INSERT INTO notification (message, is_read, user_id) 
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 VALUES ('Anda ditugaskan ke tugas Desain UI', 0, 
         (SELECT id FROM user WHERE username = 'admin'));

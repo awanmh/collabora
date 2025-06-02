@@ -4,6 +4,7 @@ package com.manajemennilai.exception;
 
 import com.manajemennilai.exception.errors.*;
 import com.manajemennilai.exception.response.*;
+<<<<<<< HEAD
 import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,31 +24,57 @@ public class CustomExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex) {
         logger.error("Resource not found: {}", ex.getMessage(), ex);
+=======
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+
+/**
+ * Handler untuk menangani semua exception kustom.
+ */
+@ControllerAdvice
+public class CustomExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex) {
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         ErrorResponse error = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AuthenticationFailedException.class)
     public ResponseEntity<ErrorResponse> handleAuthenticationFailed(AuthenticationFailedException ex) {
+<<<<<<< HEAD
         logger.error("Authentication failed: {}", ex.getMessage(), ex);
+=======
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         ErrorResponse error = new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(OperationNotAllowedException.class)
     public ResponseEntity<ErrorResponse> handleOperationNotAllowed(OperationNotAllowedException ex) {
+<<<<<<< HEAD
         logger.error("Operation not allowed: {}", ex.getMessage(), ex);
+=======
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         ErrorResponse error = new ErrorResponse(HttpStatus.FORBIDDEN.value(), ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidation(ValidationException ex) {
+<<<<<<< HEAD
         logger.error("Validation error: {}", ex.getMessage(), ex);
+=======
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
+<<<<<<< HEAD
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<ErrorResponse> handleDatabase(DataAccessException ex) {
         logger.error("Database error: {}", ex.getMessage(), ex);
@@ -73,13 +100,22 @@ public class CustomExceptionHandler {
     public ResponseEntity<ErrorResponse> handleJwtException(JwtException ex) {
         logger.error("JWT error: {}", ex.getMessage(), ex);
         ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "JWT processing failed: " + ex.getMessage());
+=======
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<ErrorResponse> handleDatabase(DatabaseException ex) {
+        ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
+<<<<<<< HEAD
         logger.error("Unexpected error occurred: {}", ex.getMessage(), ex);
         ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "An unexpected error occurred: " + ex.getMessage());
+=======
+        ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "An unexpected error occurred");
+>>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
