@@ -1,4 +1,4 @@
-## Log Aktivitas dan Log ErrorCatatan Error
+## Log Aktivitas dan Log Error
 Disini digunakan untuk menjelaskan terkait error di aplikasi sejauh mana.
 ### Pengerjaan Pertama (Creating)
 > Dikerjakan oleh : Setiawan Muhammad (1203230016)
