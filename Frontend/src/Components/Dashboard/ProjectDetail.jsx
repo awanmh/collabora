@@ -3,11 +3,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "react-toastify";
-import { getProjectById } from "../../services/projectService";
-import { getTasksByProject, createTask } from "../../services/taskService"; // 1. Import service untuk tugas
+import { getProjectById, addMemberToProject } from "../../services/projectService";
+import { getTasksByProject, createTask } from "../../services/taskService";
 import AddMemberModal from "../Modals/AddMemberModal";
-import CreateTaskModal from "../Modals/CreateTaskModal"; // 2. Import modal untuk membuat tugas
-import TaskCard from "./TaskCard"; // 3. Import kartu tugas
+import CreateTaskModal from "../Modals/CreateTaskModal";
+import TaskCard from "./TaskCard";
 
 const ProjectDetail = () => {
   const { id: projectId } = useParams();
@@ -55,13 +55,19 @@ const ProjectDetail = () => {
     }
   };
 
-  const handleAddMember = (memberData) => {
+  const handleAddMember = async (memberData) => {
     if (members.some(m => m.id === memberData.id && m.type === memberData.type)) {
       return toast.info("Anggota ini sudah ada di dalam proyek.");
     }
-    setMembers((prev) => [...prev, memberData]);
-    toast.success(`${memberData.name} berhasil ditambahkan!`);
-    // TODO: Kirim pembaruan anggota ke backend
+
+    try {
+      await addMemberToProject(projectId, memberData);
+      toast.success(`${memberData.name} berhasil ditambahkan!`);
+      fetchData();
+    } catch (error) {
+      toast.error("Gagal menambahkan anggota.");
+      console.error(error);
+    }
   };
 
   const tasksNotStarted = tasks.filter(t => t.status === 'NOT_STARTED');
