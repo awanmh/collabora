@@ -10,7 +10,7 @@ const AddMemberModal = ({ isOpen, onClose, onAddMember }) => {
   useEffect(() => {
     if (isOpen) {
       getAllStudents()
-        .then((res) => setStudents(res.data))
+        .then((res) => setStudents(res.data.students))
         .catch(() => toast.error("Gagal mengambil data mahasiswa"));
 
       getAllLecturers()
