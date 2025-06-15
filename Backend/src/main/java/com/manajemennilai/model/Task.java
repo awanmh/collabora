@@ -1,8 +1,9 @@
-// Task.java (Model Tugas)
-
+// src/main/java/com/manajemennilai/model/Task.java
 package com.manajemennilai.model;
 
 import jakarta.persistence.*;
+import lombok.Getter; // Menggunakan Lombok
+import lombok.Setter; // Menggunakan Lombok
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +12,10 @@ import java.util.List;
  * Entitas untuk tugas.
  */
 @Entity
-@Table(name = "task")
+@Table(name = "tasks") // Ganti nama tabel menjadi "tasks" (plural) sesuai konvensi
+@Getter // Menggunakan Lombok
+@Setter // Menggunakan Lombok
 public class Task {
-
-    public enum Status {
-        NOT_STARTED, IN_PROGRESS, COMPLETED
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +30,7 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status = Status.NOT_STARTED;
+    private TaskStatus status = TaskStatus.NOT_STARTED; // Menggunakan Enum dari file terpisah
 
     private boolean isMilestone;
 
@@ -45,77 +44,6 @@ public class Task {
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
-
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public boolean isMilestone() {
-        return isMilestone;
-    }
-
-    public void setMilestone(boolean milestone) {
-        isMilestone = milestone;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public User getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(User assignedTo) {
-        this.assignedTo = assignedTo;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+    
+    // Semua getter dan setter manual bisa dihapus karena sudah digantikan oleh @Getter dan @Setter
 }

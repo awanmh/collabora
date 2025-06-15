@@ -60,16 +60,14 @@ src/main/java/com/manajemennilai/
 │   ├── JwtAuthFilter.java
 │   ├── JwtAuthConfig.java
 │   ├── OpenAPIConfig.java
-<<<<<<< HEAD
 │   ├── CustomAccesDeniedHandler.java
-=======
->>>>>>> 93901ec70be462dda4fb40350dee95909f898e6e
 │   └── CorsConfig.java
 ├── controller/
 │   ├── AuthController.java
 │   ├── ProjectController.java
 │   ├── TaskController.java
 │   ├── CommentController.java
+│   ├── MemberController.java
 │   └── NotificationController.java
 ├── dto/
 │   ├── request/
@@ -108,6 +106,8 @@ src/main/java/com/manajemennilai/
 │   ├── ProjectRepository.java
 │   ├── TaskRepository.java
 │   ├── CommentRepository.java
+│   ├── StudentRepository.java
+│   ├── LecturerRepository.java
 │   └── NotificationRepository.java
 ├──service/
 │   ├── AuthService.java
@@ -137,10 +137,12 @@ frontend/
 │   │   │   └── Register.jsx # Komponen untuk halaman registrasi
 │   │   ├── Dashboard/
 │   │   │   ├── ProjectBoard.jsx # Komponen untuk kanban board proyek
+│   │   │   ├── ProjectDetail.jsx
 │   │   │   ├── TaskCard.jsx     # Komponen untuk kartu tugas
 │   │   │   └── Timeline.jsx     # Komponen untuk timeline proyek
 │   │   ├── Modals/
 │   │   │   ├── CreateProjectModal.jsx # Modal untuk membuat proyek
+│   │   │   ├── AddMemberModal.jsx
 │   │   │   └── CreateTaskModal.jsx    # Modal untuk membuat tugas
 │   │   └── Shared/
 │   │       ├── Navbar.jsx         # Komponen untuk navigasi

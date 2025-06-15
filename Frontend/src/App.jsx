@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,10 +18,27 @@ function App() {
         <div className="min-h-screen bg-navy text-white">
           <Navbar />
           <Routes>
+            {/* Rute Publik */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
-             <Route path="/projects" element={<ProjectBoard />} />
+
+            {/* Rute Privat / Dilindungi */}
+            <Route 
+              path="/projects/:id" 
+              element={
+                <PrivateRoute>
+                  <ProjectDetail />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/projects" 
+              element={
+                <PrivateRoute>
+                  <ProjectBoard />
+                </PrivateRoute>
+              } 
+            />
             <Route
               path="/"
               element={

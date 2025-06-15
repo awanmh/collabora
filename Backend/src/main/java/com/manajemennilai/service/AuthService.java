@@ -1,3 +1,4 @@
+// src/main/java/com/manajemennilai/service/AuthService.java
 package com.manajemennilai.service;
 
 import com.manajemennilai.dto.request.LoginRequest;
@@ -8,6 +9,8 @@ import com.manajemennilai.exception.errors.ValidationException;
 import com.manajemennilai.model.Lecturer;
 import com.manajemennilai.model.Student;
 import com.manajemennilai.model.User;
+import com.manajemennilai.repository.LecturerRepository; // 1. PASTIKAN REPO INI DI-IMPORT
+import com.manajemennilai.repository.StudentRepository;  // 2. PASTIKAN REPO INI DI-IMPORT
 import com.manajemennilai.repository.UserRepository;
 import com.manajemennilai.security.CustomUserDetails;
 import com.manajemennilai.security.JwtUtils;
@@ -21,6 +24,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // 3. TAMBAHKAN ANOTASI TRANSAKSIONAL
 
 /**
  * Service untuk autentikasi.
@@ -40,9 +44,17 @@ public class AuthService {
     private UserRepository userRepository;
 
     @Autowired
+    private StudentRepository studentRepository; // 4. INJECT STUDENT REPOSITORY
+
+    @Autowired
+    private LecturerRepository lecturerRepository; // 5. INJECT LECTURER REPOSITORY
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Metode login() Anda sudah benar, tidak perlu diubah.
     public AuthResponse login(LoginRequest request) {
+        // ... (kode login Anda tetap sama)
         logger.info("Mencoba login untuk username: {}", request.getUsername());
 
         if (request.getUsername() == null || request.getUsername().trim().isEmpty() ||
@@ -77,9 +89,12 @@ public class AuthService {
         }
     }
 
+
+    @Transactional // 6. GUNAKAN @Transactional
     public AuthResponse register(RegisterRequest request) {
         logger.info("Mencoba registrasi untuk username: {}", request.getUsername());
 
+        // Validasi input tetap sama
         if (request.getUsername() == null || request.getUsername().trim().isEmpty() ||
                 request.getPassword() == null || request.getPassword().isEmpty() ||
                 request.getRole() == null || request.getRole().trim().isEmpty()) {
@@ -88,61 +103,58 @@ public class AuthService {
         }
 
         String requestedRole = request.getRole().toUpperCase();
-
         if ("STUDENT".equals(requestedRole)) {
             if (request.getStudentId() == null || request.getStudentId().trim().isEmpty()) {
-                logger.error("ID Mahasiswa wajib diisi untuk role STUDENT");
                 throw new ValidationException("ID Mahasiswa wajib diisi untuk role STUDENT");
             }
         } else if ("LECTURER".equals(requestedRole)) {
             if (request.getLecturerId() == null || request.getLecturerId().trim().isEmpty()) {
-                logger.error("ID Dosen wajib diisi untuk role LECTURER");
                 throw new ValidationException("ID Dosen wajib diisi untuk role LECTURER");
             }
         } else {
-            logger.error("Role tidak valid: {}", request.getRole());
             throw new ValidationException("Role tidak valid. Pilih 'STUDENT' atau 'LECTURER'.");
         }
 
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            logger.error("Username sudah ada: {}", request.getUsername());
             throw new ValidationException("Username sudah ada");
         }
 
+        // Logika utama
         try {
-            // Buat entitas User terpisah
             User user = new User();
             user.setUsername(request.getUsername());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            user.setRole(User.Role.valueOf(requestedRole)); // Konversi String ke enum
+            user.setRole(User.Role.valueOf(requestedRole));
 
-            // Simpan User terlebih dahulu
-            user = userRepository.save(user);
-            logger.info("Pengguna berhasil disimpan: {}", request.getUsername());
+            User savedUser = userRepository.save(user); // Simpan user terlebih dahulu
+            logger.info("Pengguna berhasil disimpan dengan id: {}", savedUser.getId());
 
-            // Buat dan hubungkan Student atau Lecturer
+            // ==== PERBAIKAN UTAMA ADA DI SINI ====
             if ("STUDENT".equals(requestedRole)) {
                 Student student = new Student();
-                student.setId(user.getId());
+                student.setUser(savedUser); // Kaitkan dengan user yang baru dibuat
                 student.setStudentId(request.getStudentId());
-                student.setUser(user);
-                // Simpan student (opsional, karena hanya id yang diperlukan)
+                studentRepository.save(student); // 7. SIMPAN ENTITAS STUDENT!
+                logger.info("Entitas Student berhasil dibuat untuk user: {}", savedUser.getUsername());
+
             } else { // LECTURER
                 Lecturer lecturer = new Lecturer();
-                lecturer.setId(user.getId());
+                lecturer.setUser(savedUser); // Kaitkan dengan user yang baru dibuat
                 lecturer.setLecturerId(request.getLecturerId());
-                lecturer.setUser(user);
-                // Simpan lecturer (opsional)
+                lecturerRepository.save(lecturer); // 8. SIMPAN ENTITAS LECTURER!
+                logger.info("Entitas Lecturer berhasil dibuat untuk user: {}", savedUser.getUsername());
             }
 
-            CustomUserDetails userDetails = new CustomUserDetails(user);
+            CustomUserDetails userDetails = new CustomUserDetails(savedUser);
             String token = jwtUtils.generateToken(userDetails);
-            logger.info("JWT berhasil dibuat untuk pengguna baru: {}", request.getUsername());
+            logger.info("JWT berhasil dibuat untuk pengguna baru: {}", savedUser.getUsername());
 
             return new AuthResponse(token, user.getUsername(), user.getRole().toString());
+
         } catch (Exception e) {
             logger.error("Terjadi kesalahan tak terduga saat registrasi untuk username: {}", request.getUsername(), e);
-            throw new RuntimeException("Terjadi kesalahan tak terduga saat registrasi", e);
+            // Throwing a new exception to ensure transaction rollback
+            throw new RuntimeException("Gagal mendaftarkan pengguna baru.", e);
         }
     }
 }

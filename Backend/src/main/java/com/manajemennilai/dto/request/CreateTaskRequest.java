@@ -1,16 +1,16 @@
-// CreateTaskRequest.java (DTO untuk pembuatan tugas)
-
+// src/main/java/com/manajemennilai/dto/request/CreateTaskRequest.java
 package com.manajemennilai.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat; // Ditambahkan
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import lombok.Data; // 1. Gunakan Lombok untuk mengurangi boilerplate
 import java.time.LocalDateTime;
 
 /**
  * DTO untuk request pembuatan tugas.
  */
+@Data // Menggantikan semua getter dan setter manual
 public class CreateTaskRequest {
 
     @NotBlank(message = "Title is required")
@@ -19,52 +19,15 @@ public class CreateTaskRequest {
     private String description;
 
     @NotNull(message = "Deadline is required")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") // Format ISO-8601, Ditambahkan
+    // 2. PERBAIKAN UTAMA: Sesuaikan format agar cocok dengan input browser (tanpa detik)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm") 
     private LocalDateTime deadline;
 
     @NotNull(message = "Project ID is required")
     private Long projectId;
 
     private Long assignedToId;
-
-    // Getters and setters
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
-    }
-
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
-
-    public Long getAssignedToId() {
-        return assignedToId;
-    }
-
-    public void setAssignedToId(Long assignedToId) {
-        this.assignedToId = assignedToId;
-    }
+    
+    // 3. Tambahkan field milestone agar konsisten dengan model
+    private boolean isMilestone;
 }
