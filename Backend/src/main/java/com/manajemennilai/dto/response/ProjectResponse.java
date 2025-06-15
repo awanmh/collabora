@@ -46,4 +46,8 @@ public class ProjectResponse {
     public void setMemberIds(List<Long> memberIds) {
         this.memberIds = memberIds;
     }
+
+    public void setMembers(List<MemberResponse> collect) {
+
+    }
 }

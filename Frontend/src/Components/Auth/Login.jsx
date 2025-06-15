@@ -1,3 +1,5 @@
+// src/Components/Auth/Login.jsx
+
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -15,10 +17,15 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await login({ username, password });
-       localStorage.setItem("token", response.data.token);
+      // 1. TANGKAP HASIL DARI FUNGSI LOGIN
+      const response = await login({ username, password }); // <-- DIUBAH
+
+      // 2. (OPSIONAL) Jika token tidak di-set di dalam AuthContext, Anda bisa set di sini.
+      // Jika sudah di-set di AuthContext, baris ini bisa dihapus.
+      // localStorage.setItem("token", response.data.token);
+
       toast.success("Login successful!");
-      navigate("/");
+      navigate("/"); // Navigasi ke halaman utama yang dilindungi
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     }

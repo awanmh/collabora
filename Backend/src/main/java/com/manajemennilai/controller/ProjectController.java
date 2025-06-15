@@ -1,10 +1,10 @@
-// ProjectController.java (Clean Code & RESTful API)
+// src/main/java/com/manajemennilai/controller/ProjectController.java
 package com.manajemennilai.controller;
 
 import com.manajemennilai.dto.request.CreateProjectRequest;
 import com.manajemennilai.dto.response.ProjectResponse;
 import com.manajemennilai.service.ProjectService;
-import jakarta.validation.Valid; // Ditambahkan
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +24,7 @@ public class ProjectController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('STUDENT', 'LECTURER')")
-    public ResponseEntity<ProjectResponse> createProject(@Valid @RequestBody CreateProjectRequest request) { // Tambahkan @Valid
+    public ResponseEntity<ProjectResponse> createProject(@Valid @RequestBody CreateProjectRequest request) {
         return ResponseEntity.ok(projectService.createProject(request));
     }
 
@@ -39,7 +39,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id, @Valid @RequestBody CreateProjectRequest request) { // Tambahkan @Valid
+    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id, @Valid @RequestBody CreateProjectRequest request) {
         return ResponseEntity.ok(projectService.updateProject(id, request));
     }
 
