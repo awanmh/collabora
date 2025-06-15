@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
@@ -29,94 +29,104 @@ const Register = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex items-center justify-center min-h-screen"
+      transition={{ duration: 0.5 }}
+      className="flex items-center justify-center min-h-screen bg-gray-900"
     >
-      <div className="bg-darkGray p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gold mb-6 text-center">Register to Collabora</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="username">
+      <div className="bg-gray-800 text-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-semibold mb-6 text-center text-yellow-400">
+          Create an Account
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label htmlFor="username" className="block text-sm text-gray-300 mb-1">
               Username
             </label>
             <input
-              type="text"
               id="username"
+              type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
               required
+              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="password">
+
+          <div>
+            <label htmlFor="password" className="block text-sm text-gray-300 mb-1">
               Password
             </label>
             <input
-              type="password"
               id="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
               required
+              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="role">
+
+          <div>
+            <label htmlFor="role" className="block text-sm text-gray-300 mb-1">
               Role
             </label>
             <select
               id="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <option value="STUDENT">Student</option>
               <option value="LECTURER">Lecturer</option>
             </select>
           </div>
+
           {role === "STUDENT" && (
-            <div className="mb-4">
-              <label className="block text-lightGray mb-2" htmlFor="studentId">
+            <div>
+              <label htmlFor="studentId" className="block text-sm text-gray-300 mb-1">
                 Student ID
               </label>
               <input
-                type="text"
                 id="studentId"
+                type="text"
                 value={studentId}
                 onChange={(e) => setStudentId(e.target.value)}
-                className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
             </div>
           )}
+
           {role === "LECTURER" && (
-            <div className="mb-4">
-              <label className="block text-lightGray mb-2" htmlFor="lecturerId">
+            <div>
+              <label htmlFor="lecturerId" className="block text-sm text-gray-300 mb-1">
                 Lecturer ID
               </label>
               <input
-                type="text"
                 id="lecturerId"
+                type="text"
                 value={lecturerId}
                 onChange={(e) => setLecturerId(e.target.value)}
-                className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
             </div>
           )}
+
           <button
             type="submit"
-            className="w-full bg-gold text-navy py-3 rounded font-semibold hover:bg-yellow-400 transition disabled:opacity-50"
             disabled={loading}
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 rounded transition disabled:opacity-60"
           >
             {loading ? "Registering..." : "Register"}
           </button>
         </form>
-        <p className="mt-4 text-center text-lightGray">
+
+        <p className="text-sm text-center text-gray-400 mt-5">
           Already have an account?{" "}
-          <a href="/login" className="text-gold hover:underline">
+          <Link to="/login" className="text-yellow-400 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </motion.div>

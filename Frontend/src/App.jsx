@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import ProjectBoard from "./Components/Dashboard/ProjectBoard";
+import ProjectDetail from "./Components/Dashboard/ProjectDetail";
 import Navbar from "./Components/Shared/Navbar";
 import PrivateRoute from "./Components/Shared/PrivateRoute";
 
@@ -17,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+             <Route path="/projects" element={<ProjectBoard />} />
             <Route
               path="/"
               element={
