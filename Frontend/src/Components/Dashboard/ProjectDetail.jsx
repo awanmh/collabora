@@ -3,7 +3,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "react-toastify";
-import { getProjectById } from "../../services/projectService";
+import { getProjectById, addMemberToProject } from "../../services/projectService";
 import { getTasksByProject, createTask } from "../../services/taskService";
 import AddMemberModal from "../Modals/AddMemberModal";
 import CreateTaskModal from "../Modals/CreateTaskModal";
@@ -23,13 +23,14 @@ const ProjectDetail = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const [projectRes, tasksRes] = await Promise.all([
+      const [projectResponse, tasksResponse] = await Promise.all([
         getProjectById(projectId),
         getTasksByProject(projectId),
       ]);
-      setProject(projectRes.data);
-      setMembers(projectRes.data.members || []);
-      setTasks(tasksRes.data);
+
+      setProject(projectResponse.data);
+      setMembers(projectResponse.data.members || []);
+      setTasks(tasksResponse.data);
     } catch (err) {
       toast.error("Gagal memuat data proyek.");
       console.error("Gagal memuat data:", err);
@@ -55,18 +56,24 @@ const ProjectDetail = () => {
     }
   };
 
-  const handleAddMember = (memberData) => {
-    if (members.some((m) => m.id === memberData.id && m.type === memberData.type)) {
-      return toast.info("Anggota ini sudah ada.");
+  const handleAddMember = async (memberData) => {
+    if (members.some(m => m.id === memberData.id && m.type === memberData.type)) {
+      return toast.info("Anggota ini sudah ada di dalam proyek.");
     }
-    setMembers((prev) => [...prev, memberData]);
-    toast.success(`${memberData.name} berhasil ditambahkan!`);
-    // TODO: Kirim ke backend
+
+    try {
+      await addMemberToProject(projectId, memberData);
+      toast.success(`${memberData.name} berhasil ditambahkan!`);
+      fetchData();
+    } catch (error) {
+      toast.error("Gagal menambahkan anggota.");
+      console.error(error);
+    }
   };
 
-  const tasksNotStarted = tasks.filter((t) => t.status === "NOT_STARTED");
-  const tasksInProgress = tasks.filter((t) => t.status === "IN_PROGRESS");
-  const tasksCompleted = tasks.filter((t) => t.status === "COMPLETED");
+  const tasksNotStarted = tasks.filter(t => t.status === 'NOT_STARTED');
+  const tasksInProgress = tasks.filter(t => t.status === 'IN_PROGRESS');
+  const tasksCompleted = tasks.filter(t => t.status === 'COMPLETED');
 
   if (isLoading) return <p className="text-white text-center mt-20">Memuat data proyek...</p>;
 
@@ -99,33 +106,15 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Anggota */}
-      <div className="mt-8 max-w-md">
-        <h3 className="text-xl font-semibold mb-2">Anggota Proyek</h3>
-        {members.length > 0 ? (
-          <ul className="space-y-2">
-            {members.map((member) => (
-              <li
-                key={member.id}
-                className="bg-gray-800 text-white px-4 py-2 rounded flex justify-between items-center"
-              >
-                <span>{member.name}</span>
-                <span className="text-sm text-gray-400">({member.type})</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-sm text-gray-500">Belum ada anggota dalam proyek ini.</p>
-        )}
-      </div>
-
-      {/* Tugas */}
+      {/* Papan Tugas */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Papan Tugas</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* To Do */}
           <div className="bg-gray-900/50 p-4 rounded-lg">
-            <h3 className="font-bold text-lg mb-4 text-center text-gray-400">To Do ({tasksNotStarted.length})</h3>
+            <h3 className="font-bold text-lg mb-4 text-center text-gray-400">
+              To Do ({tasksNotStarted.length})
+            </h3>
             <div className="space-y-3">
               {tasksNotStarted.length > 0 ? (
                 tasksNotStarted.map((task) => (
@@ -177,6 +166,26 @@ const ProjectDetail = () => {
         <CommentSection projectId={projectId} />
       </div>
 
+      {/* Anggota */}
+      <div className="mt-8 max-w-md">
+        <h3 className="text-xl font-semibold mb-2">Anggota Proyek</h3>
+        {members.length > 0 ? (
+          <ul className="space-y-2">
+            {members.map((member) => (
+              <li
+                key={member.id}
+                className="bg-gray-800 text-white px-4 py-2 rounded flex justify-between items-center"
+              >
+                <span>{member.name}</span>
+                <span className="text-sm text-gray-400">({member.type})</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-gray-500">Belum ada anggota dalam proyek ini.</p>
+        )}
+      </div>
+
       {/* Modal Tambah Anggota */}
       <AddMemberModal
         isOpen={isMemberModalOpen}
@@ -189,7 +198,7 @@ const ProjectDetail = () => {
         isOpen={isTaskModalOpen}
         onClose={() => setIsTaskModalOpen(false)}
         onSubmit={handleCreateTask}
-        members={members} // ✅ Gunakan state yang sudah pasti ter-update
+        members={members}
       />
     </div>
   );
