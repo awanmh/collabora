@@ -1,112 +1,127 @@
-import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { motion } from "framer-motion";
+// src/components/Modals/CreateTaskModal.jsx
+import React, { useState, useEffect } from 'react';
 
-const CreateTaskModal = ({ isOpen, onClose, onSubmit, projectId }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [assignedToId, setAssignedToId] = useState("");
+const CreateTaskModal = ({ isOpen, onClose, onSubmit, members }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [deadline, setDeadline] = useState('');
+  const [assignedToId, setAssignedToId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (!isOpen) {
+      setTitle('');
+      setDescription('');
+      setDeadline('');
+      setAssignedToId('');
+      setError('');
+    }
+  }, [isOpen]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({
+    setIsLoading(true);
+    setError('');
+
+    const taskData = {
       title,
       description,
-      deadline,
-      projectId,
-      assignedToId: assignedToId ? parseInt(assignedToId) : null,
-    });
-    setTitle("");
-    setDescription("");
-    setDeadline("");
-    setAssignedToId("");
+      deadline: deadline ? new Date(deadline).toISOString() : null,
+      assignedToId: parseInt(assignedToId),
+    };
+
+    try {
+      await onSubmit(taskData); // onSubmit berasal dari props
+      onClose();
+    } catch (err) {
+      console.error("Gagal membuat tugas:", err);
+      setError("Gagal membuat tugas. Silakan coba lagi.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-    >
-      <div className="bg-darkGray p-6 rounded-lg shadow-lg w-full max-w-md">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gold">Create New Task</h2>
-          <button onClick={onClose} className="text-lightGray hover:text-white">
-            <FaTimes />
-          </button>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="title">
-              Title
-            </label>
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4 z-50">
+      <div className="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md border border-gray-700">
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">Buat Tugas Baru</h2>
+        {error && <p className="text-red-400 text-center mb-4">{error}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-white block mb-1">Judul</label>
             <input
               type="text"
-              id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 rounded bg-gray-700 text-white"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="description">
-              Description
-            </label>
+
+          <div>
+            <label className="text-white block mb-1">Deskripsi</label>
             <textarea
-              id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
-              rows="4"
-            ></textarea>
-          </div>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="deadline">
-              Deadline
-            </label>
-            <input
-              type="datetime-local"
-              id="deadline"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+              className="w-full px-3 py-2 rounded bg-gray-700 text-white"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-lightGray mb-2" htmlFor="assignedToId">
-              Assigned To (User ID)
-            </label>
+
+          <div>
+            <label className="text-white block mb-1">Deadline</label>
             <input
-              type="number"
-              id="assignedToId"
-              value={assignedToId}
-              onChange={(e) => setAssignedToId(e.target.value)}
-              className="w-full p-3 bg-navy border border-lightGray rounded focus:outline-none focus:border-gold"
+              type="datetime-local"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+              className="w-full px-3 py-2 rounded bg-gray-700 text-white"
+              required
             />
           </div>
-          <div className="flex justify-end">
+
+          <div>
+            <label className="text-white block mb-1">Ditugaskan kepada</label>
+            <select
+              value={assignedToId}
+              onChange={(e) => setAssignedToId(e.target.value)}
+              className="w-full px-3 py-2 rounded bg-gray-700 text-white"
+              required
+            >
+              <option value="">Pilih anggota</option>
+              {members && members.length > 0 ? (
+                members.map((member) => (
+                  <option key={member.id} value={member.id}>
+                    {member.name} ({member.type})
+                  </option>
+                ))
+              ) : (
+                <option disabled>Tidak ada anggota</option>
+              )}
+            </select>
+          </div>
+
+          <div className="flex justify-end gap-2 mt-4">
             <button
               type="button"
               onClick={onClose}
-              className="mr-4 text-lightGray hover:text-white"
+              className="bg-gray-600 px-4 py-2 rounded text-white"
             >
-              Cancel
+              Batal
             </button>
             <button
               type="submit"
-              className="bg-gold text-navy py-2 px-4 rounded font-semibold hover:bg-yellow-400 transition"
+              disabled={isLoading}
+              className="bg-blue-600 px-4 py-2 rounded text-white"
             >
-              Create
+              {isLoading ? 'Membuat...' : 'Buat Tugas'}
             </button>
           </div>
         </form>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

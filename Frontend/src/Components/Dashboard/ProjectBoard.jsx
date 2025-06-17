@@ -13,16 +13,19 @@ const ProjectBoard = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await getProjects();
-        setProjects(response.data);
-      } catch (error) {
-        toast.error("Failed to fetch projects");
-      }
-    };
-    fetchProjects();
-  }, []);
+  const fetchProjects = async () => {
+    try {
+      const response = await getProjects();
+      console.log("Projects fetched:", response.data); // ✅ log responsenya
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Fetch error:", error); // ✅ tampilkan kesalahan
+      toast.error("Failed to fetch projects");
+    }
+  };
+  fetchProjects();
+}, []);
+
 
   const handleCreateProject = async (projectData) => {
     try {

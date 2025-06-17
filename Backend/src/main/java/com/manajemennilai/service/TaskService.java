@@ -4,7 +4,7 @@ package com.manajemennilai.service;
 import com.manajemennilai.dto.request.CreateTaskRequest;
 import com.manajemennilai.dto.response.TaskResponse;
 import com.manajemennilai.exception.errors.ResourceNotFoundException;
-import com.manajemennilai.model.*; // Import semua model
+import com.manajemennilai.model.*;
 import com.manajemennilai.payload.UpdateTaskStatusRequest;
 import com.manajemennilai.repository.ProjectRepository;
 import com.manajemennilai.repository.TaskRepository;
@@ -19,9 +19,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
- * Service untuk manajemen tugas.
- */
 @Service
 public class TaskService {
 
@@ -46,8 +43,8 @@ public class TaskService {
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
         task.setDeadline(request.getDeadline());
-        task.setStatus(TaskStatus.NOT_STARTED); // Gunakan Enum dari file terpisah
-        task.setMilestone(request.isMilestone()); // Tambahkan setter untuk milestone
+        task.setStatus(TaskStatus.NOT_STARTED);
+        task.setMilestone(request.isMilestone());
         task.setProject(project);
 
         if (request.getAssignedToId() != null) {
@@ -64,11 +61,11 @@ public class TaskService {
         logger.debug("Fetching tasks for project ID: {}", projectId);
         List<Task> tasks = taskRepository.findByProjectId(projectId);
         if (tasks == null || tasks.isEmpty()) {
-            return Collections.emptyList(); // Kembalikan list kosong jika tidak ada tugas
+            return Collections.emptyList();
         }
         return tasks.stream()
                 .map(this::mapToResponse)
-                .filter(Objects::nonNull) // Hanya sertakan hasil yang tidak null
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
@@ -96,12 +93,7 @@ public class TaskService {
         taskRepository.delete(task);
     }
 
-    /**
-     * Mapper yang lebih aman untuk mengubah Task Entity menjadi TaskResponse DTO.
-     * Menambahkan pengecekan null untuk mencegah NullPointerException.
-     */
     private TaskResponse mapToResponse(Task task) {
-        // PERBAIKAN: Tambahkan blok try-catch untuk menangani data tugas yang berpotensi rusak.
         try {
             TaskResponse response = new TaskResponse();
             response.setId(task.getId());
@@ -109,29 +101,24 @@ public class TaskService {
             response.setDescription(task.getDescription());
             response.setDeadline(task.getDeadline());
 
-            // Pengecekan null untuk status
             if (task.getStatus() != null) {
                 response.setStatus(task.getStatus().name());
             } else {
-                response.setStatus(TaskStatus.NOT_STARTED.name()); // Default value jika status null
+                response.setStatus(TaskStatus.NOT_STARTED.name());
             }
 
             response.setMilestone(task.isMilestone());
 
-            // Pengecekan null untuk project
             if (task.getProject() != null) {
                 response.setProjectId(task.getProject().getId());
             }
 
-            // Pengecekan null untuk assignee
             if (task.getAssignedTo() != null) {
                 response.setAssignedToId(task.getAssignedTo().getId());
             }
             return response;
         } catch (Exception e) {
-            // Jika terjadi error saat memetakan satu tugas, catat errornya dan kembalikan null
-            // agar tugas lainnya tetap bisa diproses.
-            logger.error("Gagal memetakan Task dengan ID: {}. Kemungkinan karena data tidak konsisten. Error: {}", task.getId(), e.getMessage());
+            logger.error("Gagal memetakan Task dengan ID: {}. Error: {}", task.getId(), e.getMessage());
             return null;
         }
     }

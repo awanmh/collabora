@@ -2,19 +2,16 @@
 package com.manajemennilai.model;
 
 import jakarta.persistence.*;
-import lombok.Getter; // Menggunakan Lombok
-import lombok.Setter; // Menggunakan Lombok
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Entitas untuk tugas.
- */
 @Entity
-@Table(name = "tasks") // Ganti nama tabel menjadi "tasks" (plural) sesuai konvensi
-@Getter // Menggunakan Lombok
-@Setter // Menggunakan Lombok
+@Table(name = "tasks")
+@Getter
+@Setter
 public class Task {
 
     @Id
@@ -26,11 +23,11 @@ public class Task {
 
     private String description;
 
-    private LocalDateTime deadline;
+    private Instant deadline;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TaskStatus status = TaskStatus.NOT_STARTED; // Menggunakan Enum dari file terpisah
+    private TaskStatus status = TaskStatus.NOT_STARTED;
 
     private boolean isMilestone;
 
@@ -44,6 +41,4 @@ public class Task {
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
-    
-    // Semua getter dan setter manual bisa dihapus karena sudah digantikan oleh @Getter dan @Setter
 }
